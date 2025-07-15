@@ -1,0 +1,57 @@
+/* src/assets/main.css */
+
+/* Estilos para títulos globais */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-testfy);
+  color: var(--color-dark);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm); /* Espaçamento abaixo dos títulos */
+}
+
+p {
+  margin-bottom: var(--spacing-sm); /* Espaçamento abaixo dos parágrafos */
+}
+
+a {
+  text-decoration: none; /* Remove sublinhado padrão dos links */
+  color: var(--color-primary); /* Cor primária para links */
+  transition: color 0.3s ease; /* Transição suave na cor do link */
+}
+
+a:hover {
+  color: var(--color-accent); /* Mudar cor ao passar o mouse */
+}
+
+/* Container genérico para centralizar conteúdo */
+.container {
+  max-width: 1120px; /* Largura máxima comum para o conteúdo */
+  margin: 0 auto; /* Centraliza o container */
+  padding: 0 var(--spacing-sm); /* Padding nas laterais para mobile */
+}
+
+/* Ajuste para o main que compensa o header fixo */
+main {
+  padding-top: 60px; /* Mantém o espaçamento para o header fixo */
+}
+
+/* Estilos para mensagens de feedback (mantidos aqui ou em um arquivo separado de utilitários) */
+.feedback-message {
+  padding: var(--spacing-sm);
+  margin: var(--spacing-sm) auto;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  max-width: 800px;
+}
+
+.feedback-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
