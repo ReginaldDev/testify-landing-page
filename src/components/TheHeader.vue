@@ -1,15 +1,59 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const isMobileMenuOpen = ref(false);
+const isHeaderVisible = ref(true);
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+let lastScrollY = window.scrollY;
+let lastMouseY = 0;
+
+const isMobile = () => window.innerWidth <= 768;
+
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+
+  if (isMobile()) {
+    if (currentScrollY < lastScrollY) {
+      isHeaderVisible.value = true; // Rolando pra cima → mostra
+    } else if (currentScrollY > lastScrollY + 10) {
+      isHeaderVisible.value = false; // Rolando pra baixo → esconde
+    }
+  }
+
+  lastScrollY = currentScrollY;
+};
+
+const handleMouseMove = (event) => {
+  if (!isMobile()) {
+    const y = event.clientY;
+
+    if (y <= 50) {
+      isHeaderVisible.value = true;
+    } else if (y > 100 && y > lastMouseY) {
+      isHeaderVisible.value = false;
+    }
+
+    lastMouseY = y;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('scroll', handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('mousemove', handleMouseMove);
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'hidden-header': !isHeaderVisible }">
     <div class="logo">
       <a href="#hero"><img src="../assets/images/LogoTestFy-removebg-final - light.png" alt="Testify Logo" class="logo-image" /></a>
     </div>
@@ -203,5 +247,14 @@ const toggleMobileMenu = () => {
   .menu-toggle.active .bar:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
   }
+}
+
+.hidden-header {
+  transform: translateY(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.header {
+  transition: transform 0.4s ease-in-out;
 }
 </style>

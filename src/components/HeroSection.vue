@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { animate, stagger } from "motion";
 import { splitText } from "motion-plus";
 
 const heroContentRef = ref(null);
+let observer = null;
 
-onMounted(() => {
+const runHeroAnimation = () => {
   if (!heroContentRef.value) return;
 
   const h1Element = heroContentRef.value.querySelector("h1");
@@ -41,6 +42,31 @@ onMounted(() => {
       bounce: 0.35,
     }
   );
+};
+
+onMounted(() => {
+  const target = document.querySelector("#hero");
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runHeroAnimation();
+        }
+      });
+    },
+    { threshold: 0.5 } // 50% da seção visível
+  );
+
+  if (target) {
+    observer.observe(target);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect();
+  }
 });
 </script>
 
@@ -69,6 +95,7 @@ onMounted(() => {
   justify-content: center;
   text-align: center;
   height: 100vh;
+  margin-top: -60px;
   padding: 0 var(--spacing-md);
   /* Remova o background gradiente, o vídeo será o fundo */
   /* background: linear-gradient(133deg,rgba(13, 110, 253, 1) 0%, rgba(7, 151, 176, 1) 50%, rgba(13, 202, 240, 1) 100%); */
