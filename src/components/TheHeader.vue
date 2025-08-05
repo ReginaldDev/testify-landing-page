@@ -125,11 +125,11 @@ onBeforeUnmount(() => {
   font-weight: 500;
   transition: all 0.3s ease;
   border-radius: 4px;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(172, 171, 171, 0.1); */
   color: var(--color-primary);
 }
 

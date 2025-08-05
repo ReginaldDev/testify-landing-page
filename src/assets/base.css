@@ -8,7 +8,7 @@
   --color-primary: #007bff; /* Azul vibrante, para botões, links, etc. */
   --color-secondary: #6c757d; /* Cinza para texto secundário */
   --color-accent: #9200ff; /* Roxo para destaques (como os percentuais) */
-  --color-dark: #333; /* Texto principal e fundos escuros */
+  --color-dark: #1d1d1d; /* Texto principal e fundos escuros */
   --color-light: #f4f7f6; /* Fundo suave para seções claras */
   --color-white: #ffffff;
   --color-blue: #0d6efd;

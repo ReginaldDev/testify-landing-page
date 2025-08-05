@@ -138,10 +138,10 @@ onBeforeUnmount(() => {
 
 .hero-content h1 {
   font-size: var(--font-size-xxl);
-  font-weight: bold;
+  font-weight: 300;
   margin-bottom: var(--spacing-sm);
   color: var(--color-white);
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 5px 10px 10px rgba(104, 104, 104, 0.733);
 }
 
 .split-word {
@@ -154,7 +154,7 @@ onBeforeUnmount(() => {
   max-width: 600px;
   margin: 0 auto var(--spacing-md) auto;
   color: var(--color-light); /* Pode precisar ser var(--color-white) se a overlay for muito escura */
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 3px 3px 8px rgba(99, 98, 98, 0.5);
 }
 
 .cta-button {

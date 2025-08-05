@@ -110,7 +110,7 @@ const selectTab = (id) => {
 .about h2 {
   text-align: center;
   font-size: var(--font-size-xl);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   color: var(--color-primary);
 }
 
@@ -130,7 +130,7 @@ const selectTab = (id) => {
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   border-bottom: 2px solid var(--color-light);
   padding-bottom: var(--spacing-xs);
 }
@@ -168,8 +168,8 @@ const selectTab = (id) => {
   border-radius: 2px;
 }
 
+/* 1. Removida a altura fixa do tab-content-wrapper */
 .tab-content-wrapper {
-  min-height: 350px;
   display: flex;
   justify-content: center;
 }
@@ -177,40 +177,46 @@ const selectTab = (id) => {
 .info-block-single {
   background-color: var(--color-light);
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.329);
   padding: var(--spacing-lg);
-  max-width: 800px;
+  /* max-width: 800px; */
   width: 100%;
-  text-align: left; /* Padrão para o texto */
-
-  /* Por padrão (mobile-first), o display é column para mobile */
+  text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza a imagem e o bloco de texto */
+  align-items: center;
+  /* 2. Removida a altura fixa aqui */
+  /* height: 100%; */
 }
 
-/* Esconde a imagem por padrão (mobile-first) */
 .block-image-container {
   display: none;
 }
 
 .block-image {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
-  display: block; /* Garante que a imagem se comporte como um bloco */
+  height: auto; /* Deixa a altura ser automática */
+  object-fit: cover;
+  display: block;
 }
 
+/* 3. Ajuste no container de texto para que não tenha altura fixa */
 .block-text-content {
-  flex: 1; /* Permite que o conteúdo de texto ocupe o espaço restante */
-  width: 100%; /* Garante que o texto ocupe a largura disponível em mobile */
+  flex: 1;
+  width: 100%;
+  /* Removidos os estilos de flexbox para alinhamento vertical,
+     pois agora a altura será baseada no conteúdo */
+}
+
+.block-text-content p {
+  text-align: justify;
 }
 
 .info-block-single h3 {
   font-size: var(--font-size-lg);
   color: var(--color-primary);
   margin-bottom: var(--spacing-md);
-  text-align: center; /* Centralizado em mobile */
+  text-align: center;
   position: relative;
   padding-bottom: var(--spacing-xs);
 }
@@ -218,7 +224,7 @@ const selectTab = (id) => {
 .info-block-single h3::after {
   content: '';
   position: absolute;
-  left: 50%; /* Centraliza a linha em mobile */
+  left: 50%;
   transform: translateX(-50%);
   bottom: 0;
   width: 50px;
@@ -234,7 +240,6 @@ const selectTab = (id) => {
   color: var(--color-dark);
 }
 
-/* Estilos para a transição */
 .fade-slide-enter-active,
 .fade-slide-leave-active {
   transition: all 0.5s ease-in-out;
@@ -251,31 +256,41 @@ const selectTab = (id) => {
 }
 
 /* Media Queries para responsividade */
-/* Breakpoint para desktop */
 @media (min-width: 769px) {
   .info-block-single {
-    flex-direction: row; /* Imagem e texto lado a lado */
-    align-items: flex-start; /* Alinha os itens ao topo */
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
   }
 
   .block-image-container {
-    display: flex; /* Torna a imagem visível no desktop */
-    width: 50%; /* Largura fixa para o container da imagem */
-    height: 100%; /* Altura fixa para o container da imagem */
-    flex-shrink: 0; /* Impede que o container da imagem encolha */
-    margin-right: var(--spacing-lg); /* Espaçamento entre imagem e texto */
+    display: flex;
+    width: 50%;
+    /* Use a altura do container de texto para a imagem */
+    /* Removido `height: 100%` daqui também */
+    padding: var(--spacing-lg);
+  }
+
+  .block-image {
+    width: 100%; /* Garante que a imagem preencha a largura */
+    height: 100%; /* Isso fará com que a imagem se estique para a altura do container */
+    object-fit: cover;
+  }
+
+  .block-text-content {
+    flex: 1;
+    padding: var(--spacing-lg);
   }
 
   .info-block-single h3 {
-    text-align: left; /* Alinha o título à esquerda no desktop */
+    text-align: left;
   }
   .info-block-single h3::after {
-    left: 0; /* Alinha a linha à esquerda no desktop */
+    left: 0;
     transform: translateX(0);
   }
 }
 
-/* Media Query para telas menores (mobile) */
 @media (max-width: 768px) {
   .about {
     padding: var(--spacing-md) var(--spacing-sm);
@@ -317,6 +332,5 @@ const selectTab = (id) => {
   .info-block-single p {
     font-size: var(--font-size-sm);
   }
-  /* O block-image-container já está com display: none por padrão (mobile-first) */
 }
 </style>

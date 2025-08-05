@@ -3,12 +3,12 @@
 // Se precisar adicionar um novo serviço, basta adicioná-lo aqui!
 const services = [
   {
-    title: 'Testes Funcionais e não funcionais',
+    title: 'Testes Funcionais e Não Funcionais',
     description: 'Garantimos que cada funcionalidade do seu software opere conforme o esperado, identificando bugs antes que cheguem ao usuário.'
   },
   {
     title: 'Testes para Web e Mobile',
-    description: 'Verificamos as funcionalidades e usabilidade do seu site ou app Web.'
+    description: 'Verificamos as funcionalidades e usabilidade do seu site ou aplicativo.'
   },
   {
     title: 'Testes de Performance',
@@ -76,13 +76,14 @@ const services = [
   background-color: var(--color-light); /* Usando variável */
   padding: var(--spacing-md); /* Usando variável */
   border-radius: 8px;
+  box-shadow: 0 4px 15px #09000f41;
   border: 1px solid #eaeaea; /* Mantenho fixo se não tiver uma variável para bordas muito claras */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-5px); /* Efeito de levantar o card */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 4px 20px #9000ff54; /* Sombra suave */
 }
 
 .service-card h3 {
